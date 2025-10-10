@@ -55,9 +55,18 @@ nav {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
+}
+
+.logo img {
+  height: 150px;
+  width: auto;
+  border-radius: 8px; /* optional: gives it a smooth rounded edge */
 }
 
 .nav-links {
@@ -125,19 +134,36 @@ nav {
   margin-bottom: 2rem;
 }
 
-.hero .btn {
-  background: var(--secondary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  color: #fff;
-  text-decoration: none;
+/* Hero / CTA Button */
+.cta-button {
+  background: var(--accent);
+  color: #fff; /* always white text */
   font-weight: 600;
-  transition: background 0.3s;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, color 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.hero .btn:hover {
-  background: var(--accent);
-  color: #000;
+.cta-button:hover {
+  background: var(--secondary);
+  color: #fff; /* ensure hover doesn’t turn invisible */
+  transform: translateY(-2px);
+}
+
+.cta-button:active {
+  transform: scale(0.97);
+}
+
+.hero-info {
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent dark backdrop */
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #fff; /* ensures bright text */
 }
 
 /* -----------------------------
@@ -248,18 +274,49 @@ nav {
 footer {
   background: var(--primary);
   color: #fff;
-  text-align: center;
   padding: 2rem 1rem;
   margin-top: 3rem;
 }
 
-footer a {
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.footer-text p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.footer-text a {
   color: var(--accent);
   text-decoration: none;
 }
 
-footer a:hover {
+.footer-text a:hover {
   text-decoration: underline;
+}
+
+/* optional: smaller text on mobile */
+@media (max-width: 600px) {
+  .footer-logo {
+    height: 50px;
+  }
+  .footer-text p {
+    font-size: 0.9rem;
+  }
 }
 
 /* -----------------------------
@@ -284,3 +341,183 @@ footer a:hover {
     font-size: 1.1rem;
   }
 }
+
+/* -----------------------------
+   Back to Top Button
+------------------------------ */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s, transform 0.3s;
+}
+
+#backToTop:hover {
+  background: var(--accent);
+  color: #000;
+  transform: translateY(-3px);
+}
+/* -----------------------------
+   Plan Your Visit Modal
+------------------------------ */
+#planVisitBtn {
+  background: var(--accent);
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 20px;
+}
+
+#planVisitBtn:hover {
+  background: var(--secondary);
+}
+
+/* Modal backdrop */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Close button */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Form styling */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-content input,
+.modal-content button {
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+
+.modal-content input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: var(--accent);
+}
+
+/* -----------------------------
+   About Page Layout
+------------------------------ */
+.about-page {
+  background-color: #f9f9f9;
+  padding: 4rem 2rem;
+}
+
+.about-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.about-text h1 {
+  color: var(--secondary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text h2 {
+  color: var(--accent);
+  margin-top: 2rem;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.about-img {
+  flex: 1 1 250px;
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Stack images on smaller screens */
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-img {
+    max-width: 80%;
+  }
+
+  .about-text {
+    text-align: left;
+  }
+}
+

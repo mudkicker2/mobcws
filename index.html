@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +11,10 @@
 <body>
   <header>
     <nav>
-      <div class="logo">Mount Olive Baptist Church</div>
+      <div class="logo">
+  <img src="assets/logo.jpg" alt="Mount Olive Baptist Church Logo" />
+  <span></span>
+</div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -26,13 +30,14 @@
   <section class="hero" style="background-image: url('assets/m.png');">
     <div class="hero-content">
       <h1>Welcome to Mount Olive Baptist Church</h1>
-      <p>Sundays at 11:00 AM • Ware Shoals, South Carolina</p>
+      <p class="hero-info">Morning worship: Sundays at 11:00 AM • Ware Shoals, South Carolina</p>
       <div class="cta-buttons">
-        <a href="about.html" class="btn">I’m New / Plan a Visit</a>
+        <a href="https://maps.app.goo.gl/HKwhEy3WxhPqArsf8" class="btn">Get Directions</a>
         <a href="ministries.html" class="btn">Get Involved</a>
         <a href="sermons.html" class="btn">Listen Live</a>
       </div>
-      <a href="https://www.google.com/maps/place/Ware+Shoals+SC" target="_blank" class="directions-btn">📍 Get Directions</a>
+	<button id="planVisitBtn" class="cta-button">Plan Your Visit</button>
+
     </div>
   </section>
 
@@ -41,7 +46,10 @@
     <div class="sermon-card">
       <h3>“Do You Want To Be Free?”</h3>
       <p>Preacher: Lamar Babb</p>
-      <a href="https://www.youtube.com/watch?v=O1cMVWik76g" target="_blank" class="btn">Watch Now</a>
+      <a href="https://www.youtube.com/watch?v=O1cMVWik76g" target="_blank" class="cta-button">
+  🎥 Watch Now
+</a>
+
     </div>
   </section>
 
@@ -55,11 +63,87 @@
     <a href="ministries.html" class="btn">Learn More</a>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Mount Olive Baptist Church • <a href="mailto:mountolivebcws@gmail.com">mountolivebcws@gmail.com</a></p>
-    <p>
-      <a href="https://www.youtube.com/@mountolivebaptistchurch6569" target="_blank">YouTube</a>
-    </p>
-  </footer>
+<footer>
+  <div class="footer-content">
+    <img src="assets/logo.jpg" alt="Mount Olive Baptist Church Logo" class="footer-logo" />
+    <div class="footer-text">
+      <p>&copy; 2025 Mount Olive Baptist Church</p>
+      <p><a href="mailto:mountolivebcws@gmail.com">mountolivebcws@gmail.com</a></p>
+      <p>
+        <a href="https://www.youtube.com/@mountolivebaptistchurch6569" target="_blank">YouTube</a>
+      </p>
+    </div>
+  </div>
+</footer>
+<button id="backToTop" title="Back to Top">↑</button>
+<script>
+  // Show button after scrolling
+  window.addEventListener("scroll", function () {
+    const btn = document.getElementById("backToTop");
+    if (window.scrollY > 400) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  });
+
+  // Smooth scroll to top when clicked
+  document.getElementById("backToTop").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+<div id="planVisitModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>Plan Your Visit</h2>
+    <p>We’d love to meet you at Mount Olive Baptist Church!</p>
+    <form action="https://formspree.io/f/mldpwnlr" method="POST">
+  <label for="name">Your Name</label>
+  <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+  <label for="email">Your Email</label>
+  <input type="email" id="email" name="_replyto" placeholder="you@example.com" required>
+
+  <label for="visit-date">When do you plan to visit?</label>
+  <input type="date" id="visit-date" name="visit-date">
+
+  <button type="submit" class="cta-button">Submit</button>
+</form>
+<p id="formMessage" style="display:none;">Thank you for reaching out! We’ll be in touch soon.</p>
+
+  </div>
+</div>
+<script>
+  // Modal open & close
+  const modal = document.getElementById("planVisitModal");
+  const btn = document.getElementById("planVisitBtn");
+  const closeBtn = document.querySelector(".close-btn");
+
+  btn.onclick = () => modal.style.display = "block";
+  closeBtn.onclick = () => modal.style.display = "none";
+
+  // Close when clicking outside the modal
+  window.onclick = (e) => {
+    if (e.target == modal) modal.style.display = "none";
+  };
+</script>
+<script>
+  const form = document.querySelector("#planVisitModal form");
+  const message = document.getElementById("formMessage");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    }).then(() => {
+      message.style.display = "block";
+      form.reset();
+      setTimeout(() => message.style.display = "none", 5000);
+    });
+  });
+</script>
+
 </body>
 </html>
