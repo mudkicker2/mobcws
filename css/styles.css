@@ -520,4 +520,55 @@ footer {
     text-align: left;
   }
 }
+/* ===== Marquee Banner ===== */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #8B0000; /* Deep red like Summit's accent */
+  color: white;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  z-index: 5;
+}
+
+.marquee-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 20s linear infinite;
+}
+
+@keyframes scrollText {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Pause marquee on hover (for desktop) */
+.marquee-content:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+/* ✅ Mobile fixes */
+@media (max-width: 768px) {
+  .marquee-content {
+    animation: scrollText 15s linear infinite;
+    padding-left: 200%; /* give extra room to start offscreen */
+    font-size: 0.9rem;
+  }
+
+  @keyframes scrollText {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
 
