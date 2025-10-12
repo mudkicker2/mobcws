@@ -524,7 +524,7 @@ footer {
 .marquee {
   overflow: hidden;
   white-space: nowrap;
-  background-color: #8B0000; /* Deep red like Summit's accent */
+  background-color: #8B0000; /* Summit-style deep red */
   color: white;
   padding: 0.75rem 0;
   font-weight: 600;
@@ -533,43 +533,39 @@ footer {
   z-index: 5;
 }
 
-.marquee-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scrollText 20s linear infinite;
+.marquee-inner {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scrollText 25s linear infinite;
 }
 
+.marquee-inner span {
+  padding-right: 4rem; /* space between repeats */
+}
+
+/* Keyframes for smooth continuous scroll */
 @keyframes scrollText {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(-100%);
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-/* Pause marquee on hover (for desktop) */
-.marquee-content:hover {
+/* Pause on hover (desktop only) */
+.marquee:hover .marquee-inner {
   animation-play-state: paused;
   cursor: pointer;
 }
 
-/* ✅ Mobile fixes */
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .marquee-content {
-    animation: scrollText 15s linear infinite;
-    padding-left: 70%; /* give extra room to start offscreen */
+  .marquee {
     font-size: 0.9rem;
   }
-
-  @keyframes scrollText {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+  .marquee-inner {
+    animation: scrollText 20s linear infinite;
   }
 }
-
 
