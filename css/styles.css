@@ -558,7 +558,7 @@ footer {
 @media (max-width: 768px) {
   .marquee-content {
     animation: scrollText 15s linear infinite;
-    padding-left: 200%; /* give extra room to start offscreen */
+    padding-left: 70%; /* give extra room to start offscreen */
     font-size: 0.9rem;
   }
 
@@ -571,4 +571,5 @@ footer {
     }
   }
 }
+
 
